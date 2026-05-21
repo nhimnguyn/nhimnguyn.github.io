@@ -126,19 +126,135 @@ body.loaded .nav-btn {
 }
 
 @media (max-width: 900px) {
+  .nav-btn {
+    font-size: clamp(11px, 2vw, 15px);
+    letter-spacing: 0.08em;
+    padding: 8px 14px;
+    box-shadow: 2px 2px 0 #000;
+  }
+
+  .nav-btn.dot::before {
+    font-size: clamp(13px, 2.5vw, 17px);
+    margin-right: 0.35em;
+  }
+
+  .page-header {
+    margin: 9vw 0 4vw 6%;
+    gap: 2vw;
+  }
+
+  .header-regular {
+    font-size: clamp(2rem, 5.5vw, 3.2rem);
+  }
+
+  .header-bold {
+    font-size: clamp(2.3rem, 6.5vw, 3.7rem);
+  }
+
   .grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 4vw;
   }
+
+  .grid__cell__overlay {
+    font-size: clamp(10px, 1.5vw, 14px);
+    padding: 4px 9px;
+    letter-spacing: 0.09em;
+  }
+
+  .lb-counter {
+    font-size: clamp(11px, 1.8vw, 15px);
+    padding: 7px 14px;
+    letter-spacing: 0.09em;
+    box-shadow: 2px 2px 0 #000;
+  }
 }
 
 @media (max-width: 520px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 6vw;
+  body,
+  html {
+    background-size: 6vw 6vw;
   }
+
+  .nav-menu {
+    top: 4%;
+    left: 4%;
+  }
+
+  .nav-btn {
+    font-size: clamp(11px, 3.5vw, 14px);
+    letter-spacing: 0.06em;
+    padding: 8px 14px;
+  }
+
+  .nav-btn.dot::before {
+    font-size: clamp(13px, 4.2vw, 16px);
+    margin-right: 0.35em;
+  }
+
   .page-header {
-    margin-top: 15vw;
+    margin: 18vw 0 5vw 4.5%;
+    gap: 2vw;
+  }
+
+  .header-regular {
+    font-size: clamp(1.7rem, 9vw, 2.6rem);
+  }
+
+  .header-bold {
+    font-size: clamp(2rem, 10.5vw, 3rem);
+  }
+
+  /* 2-column grid on small phones — never collapse to single column */
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.5vw;
+    padding: 0 4.5% 16vw 4.5%;
+  }
+
+  .grid__cell__overlay {
+    font-size: clamp(9px, 2.8vw, 11px);
+    padding: 3px 6px;
+    letter-spacing: 0.07em;
+  }
+
+  /* Hover transforms cause sticky/glitchy states on touch — disable */
+  .grid__cell:hover {
+    transform: none;
+    box-shadow: 4px 4px 0 #000;
+    filter: brightness(1);
+  }
+
+  .grid:has(.grid__cell:hover) .grid__cell:not(:hover) {
+    filter: brightness(1);
+    transform: none;
+  }
+
+  /* Lightbox — wider image, adjusted controls */
+  .lightbox__img-wrap {
+    max-width: 92vw;
+    max-height: 68vh;
+  }
+
+  .lightbox__img {
+    max-height: 68vh;
+    box-shadow: 5px 5px 0 #000;
+  }
+
+  .lightbox__controls {
+    bottom: 3.5%;
+    gap: 10px;
+  }
+
+  .lb-counter {
+    font-size: clamp(10px, 3vw, 13px);
+    padding: 7px 12px;
+    box-shadow: 2px 2px 0 #000;
+  }
+
+  .lightbox__close-container {
+    top: 3.5%;
+    right: 4%;
   }
 }
 
@@ -294,4 +410,70 @@ body.loaded .grid__cell {
   box-shadow: 3px 3px 0px #000;
   display: flex;
   align-items: center;
+}
+
+/* These rules must live AFTER the base styles they override */
+@media (max-width: 900px) {
+  .grid__cell__overlay {
+    font-size: clamp(10px, 1.5vw, 14px);
+    padding: 4px 9px;
+    letter-spacing: 0.09em;
+  }
+
+  .lb-counter {
+    font-size: clamp(11px, 1.8vw, 15px);
+    padding: 7px 14px;
+    letter-spacing: 0.09em;
+    box-shadow: 2px 2px 0 #000;
+  }
+
+  .lightbox__controls {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid__cell__overlay {
+    font-size: clamp(9px, 2.8vw, 11px);
+    padding: 3px 6px;
+    letter-spacing: 0.07em;
+  }
+
+  /* No hover animation on touch — prevents sticky scale states */
+  .grid__cell:hover {
+    transform: none;
+    box-shadow: 4px 4px 0 #000;
+    filter: brightness(1);
+  }
+
+  .grid:has(.grid__cell:hover) .grid__cell:not(:hover) {
+    filter: brightness(1);
+    transform: none;
+  }
+
+  .lightbox__img-wrap {
+    max-width: 92vw;
+    max-height: 68vh;
+  }
+
+  .lightbox__img {
+    max-height: 68vh;
+    box-shadow: 5px 5px 0 #000;
+  }
+
+  .lightbox__controls {
+    bottom: 3.5%;
+    gap: 10px;
+  }
+
+  .lightbox__close-container {
+    top: 3.5%;
+    right: 4%;
+  }
+
+  .lb-counter {
+    font-size: clamp(10px, 3vw, 13px);
+    padding: 7px 12px;
+    box-shadow: 2px 2px 0 #000;
+  }
 }
