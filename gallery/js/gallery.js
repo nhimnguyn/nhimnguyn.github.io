@@ -76,3 +76,16 @@ function preloadAround(index) {
     img.src = images[i].src;
   });
 }
+
+// Touch swipe to navigate lightbox
+let swipeStartX = 0;
+const lb = document.getElementById("lightbox");
+
+lb.addEventListener("touchstart", (e) => {
+  swipeStartX = e.touches[0].clientX;
+}, { passive: true });
+
+lb.addEventListener("touchend", (e) => {
+  const dx = e.changedTouches[0].clientX - swipeStartX;
+  if (Math.abs(dx) > 48) goTo(dx < 0 ? current + 1 : current - 1);
+}, { passive: true });
