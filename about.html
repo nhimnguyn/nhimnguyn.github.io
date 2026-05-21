@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Font Definitions */
+      @font-face {
+        font-family: "computer says no";
+        src:
+          url("assets/csn.woff2") format("woff2"),
+          local("Courier New"),
+          monospace;
+      }
+      :root {
+        --bg: #f7f7f7;
+        --grid: #bed5db59;
+        --grid-x: #bed5db9f;
+        --accent: #bed5db9f;
+        --accent-dk: #a8c4cb9f;
+        --ink: #000;
+
+        --grid-sz-desk: 3vw;
+        --grid-sz-mob: 7vw;
+
+        --fz-hero-reg: clamp(1.9rem, 5.5vw, 4.2rem);
+        --fz-hero-bold: clamp(2.2rem, 6.2vw, 4.8rem);
+        --fz-body: clamp(0.62rem, 1.4vw, 1rem);
+        --fz-footer: clamp(0.52rem, 1.2vw, 0.82rem);
+        --fz-nav: clamp(0.45rem, 1.3vw, 0.95rem);
+      }
+
+      /*  Reset  */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--bg);
+        background-image:
+          linear-gradient(var(--grid) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grid-x) 1px, transparent 1px);
+        background-size: var(--grid-sz-desk) var(--grid-sz-desk);
+      }
+
+      /*  Nav  */
+      .nav-menu {
+        position: fixed;
+        top: clamp(12px, 3.5vw, 28px);
+        left: clamp(14px, 4vw, 36px);
+        z-index: 30;
+      }
+
+      .nav-btn {
+        font-family: "computer says no", monospace;
+        font-size: var(--fz-nav);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink);
+        background: var(--bg);
+        border: 1.5px solid var(--ink);
+        padding: 0.5em 1.1em;
+        cursor: pointer;
+        display: inline-block;
+        text-decoration: none;
+        box-shadow: 3px 3px 0 var(--ink);
+        transition:
+          box-shadow 0.18s,
+          transform 0.18s,
+          background 0.15s;
+        user-select: none;
+      }
+
+      .nav-btn::before {
+        content: "·";
+        margin-right: 0.4em;
+        font-size: 1.2em;
+        line-height: 0;
+        vertical-align: middle;
+        opacity: 0.5;
+      }
+
+      .nav-btn:hover {
+        background: var(--accent);
+        box-shadow: 5px 5px 0 var(--ink);
+        transform: translate(-2px, -2px);
+      }
+      .nav-btn:active {
+        background: var(--accent-dk);
+        box-shadow: 1px 1px 0 var(--ink);
+        transform: translate(2px, 2px);
+      }
+
+      /*  Page Wrapper  */
+      .page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        padding: clamp(64px, 10vw, 100px) clamp(20px, 7vw, 72px)
+          clamp(80px, 10vw, 100px);
+      }
+
+      /*  Desktop two-column layout  */
+      .content-row {
+        display: flex;
+        flex: 1;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 4vw;
+      }
+
+      /*  Left column  */
+      .text-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 0;
+        min-width: 0;
+      }
+
+      .page-header {
+        display: flex;
+        align-items: baseline;
+        gap: 0.3em;
+        margin-bottom: clamp(1.4rem, 3vw, 2.8rem);
+        flex-wrap: wrap;
+      }
+
+      .header-regular {
+        font-family: "Roboto", sans-serif;
+        font-size: var(--fz-hero-reg);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        line-height: 1;
+      }
+
+      .header-bold {
+        font-family: "Roboto", sans-serif;
+        font-size: var(--fz-hero-bold);
+        font-weight: 900;
+        font-style: italic;
+        letter-spacing: -0.05em;
+        transform: skewX(-5deg);
+        display: inline-block;
+        color: var(--ink);
+        line-height: 1;
+      }
+
+      .bio-text {
+        font-family: "computer says no", monospace;
+        font-size: var(--fz-body);
+        letter-spacing: 0.08em;
+        line-height: 1.75;
+        color: var(--ink);
+        text-transform: uppercase;
+        max-width: 48ch;
+        margin-top: 2rem;
+      }
+
+      .bio-text p {
+        margin: 0 0 1.4em 0;
+      }
+
+      .bio-text p:last-child {
+        margin-bottom: 0;
+      }
+
+      /*  Right column / image  */
+      .image-content {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+      }
+
+      .profile-image {
+        width: clamp(160px, 28vw, 380px);
+        height: auto;
+        max-height: 72vh;
+        object-fit: cover;
+        display: block;
+      }
+
+      /*  Footer  */
+      .footer-text {
+        font-family: "computer says no", monospace;
+        font-size: var(--fz-footer);
+        letter-spacing: 0.1em;
+        line-height: 1.7;
+        color: var(--ink);
+        text-transform: uppercase;
+        margin-top: clamp(0.5rem, 2vw, 1.5rem);
+      }
+
+      /*  Mobile  */
+      @media (max-width: 640px) {
+        :root {
+          --fz-body: clamp(0.68rem, 3.4vw, 0.95rem);
+          --fz-footer: clamp(0.55rem, 2.8vw, 0.78rem);
+        }
+
+        body,
+        html {
+          background-size: var(--grid-sz-mob) var(--grid-sz-mob);
+        }
+
+        .page {
+          padding: 72px 20px 48px;
+        }
+
+        .content-row {
+          flex-direction: column-reverse; /* image above text on mobile */
+          gap: 2rem;
+        }
+
+        .image-content {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .profile-image {
+          width: min(192px, 43vw);
+          max-height: none;
+        }
+
+        .bio-text {
+          max-width: none;
+        }
+
+        .footer-text {
+          margin-top: 2.4rem;
+        }
+      }
+
+      /*  Tablet  */
+      @media (min-width: 641px) and (max-width: 960px) {
+        .profile-image {
+          width: clamp(160px, 32vw, 280px);
+        }
+
+        .bio-text {
+          max-width: 36ch;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav-menu" aria-label="Main navigation">
+      <a class="nav-btn" href="index.html">back</a>
+    </nav>
+
+    <div class="page">
+      <div class="content-row">
+        <div class="text-content">
+          <div class="page-header">
+            <span class="header-regular">about</span>
+            <span class="header-bold">me</span>
+          </div>
+
+          <div class="bio-text">
+            <p>
+              HEY! I'm Kat marketing freelancer with a geology degree and a
+              genuine obsession with the natural world. ⛰️
+            </p>
+            <p>
+              I believe food and culture are the real reasons most of us choose
+              where to go next. ⛩️🌮🍲
+            </p>
+          </div>
+        </div>
+
+        <div class="image-content">
+          <img src="assets/main.jpg" alt="Kat" class="profile-image" />
+        </div>
+      </div>
+
+      <div class="footer-text">
+        This site is a soft archive and a hard launch<br />
+        (depending on the day).
+      </div>
+    </div>
+    <script src="js/transitions.js"></script>
+  </body>
+</html>

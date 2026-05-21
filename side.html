@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Side Hustles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      @font-face {
+        font-family: "computer says no";
+        src:
+          url("../assets/csn.woff2") format("woff2"),
+          local("Courier New"),
+          monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #b9bdd8;
+        color: #000;
+        font-family: "computer says no", monospace;
+        overflow-x: hidden;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      .nav-menu {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6vw;
+        z-index: 20;
+      }
+
+      .nav-btn {
+        font-family: "computer says no", monospace;
+        font-size: 0.95vw;
+        letter-spacing: 0.12vw;
+        text-transform: uppercase;
+        color: #000;
+        background: #f7f7f7;
+        border: 1.5px solid #000;
+        padding: 0.45vw 1.1vw;
+        cursor: pointer;
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+        box-shadow: 3px 3px 0px #000;
+        opacity: 1;
+        transform: translateX(0px) rotate(-1deg);
+        transition:
+          transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+          background 0.15s ease,
+          opacity 0.5s ease;
+        user-select: none;
+        white-space: nowrap;
+      }
+
+      .nav-btn:hover {
+        transform: translateX(0px) rotate(0deg) translate(-2px, -2px);
+        box-shadow: 5px 5px 0px #000;
+        background: #ffffff;
+      }
+      .nav-btn::before {
+        content: "·";
+        margin-right: 0.4vw;
+        font-size: 1.2vw;
+        line-height: 0;
+        vertical-align: middle;
+        opacity: 0.5;
+      }
+
+      .nav-btn:active {
+        transform: translateX(0px) rotate(0deg) translate(3px, 3px);
+        box-shadow: 0px 0px 0px #000;
+        background: #e8e8e8;
+        transition:
+          transform 0.06s ease,
+          box-shadow 0.06s ease,
+          background 0.06s ease;
+      }
+
+      /* Title Area */
+      .title-container {
+        position: absolute;
+        top: 4%;
+        right: 8%;
+        z-index: 10;
+        width: 30vw;
+        overflow: visible;
+      }
+
+      .title-container svg {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+
+      /* Content Items */
+      .content-item {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5vw;
+        z-index: 5;
+      }
+
+      .content-item img {
+        width: 10vw;
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.1));
+      }
+
+      .content-item p {
+        font-size: 1.1vw;
+        line-height: 1.8;
+        letter-spacing: 0.05vw;
+        text-transform: uppercase;
+      }
+
+      /* Specific Positions */
+      .item-earth {
+        top: 18%;
+        left: 5%;
+      }
+
+      .item-business {
+        top: 25%;
+        left: 42%;
+        align-items: center;
+        text-align: left;
+      }
+
+      .item-business img {
+        width: 10vw;
+      }
+
+      .item-people {
+        top: 48%;
+        right: 8%;
+      }
+
+      .item-people img {
+        width: 10vw;
+        transform: rotate(4deg);
+      }
+
+      /* Footer Text */
+      .footer-text {
+        position: absolute;
+        bottom: 5%;
+        left: 5%;
+        font-size: 1vw;
+        line-height: 1.8;
+        letter-spacing: 0.05vw;
+        text-transform: uppercase;
+      }
+
+      /* Media Queries */
+      @media (max-width: 768px) {
+        .title-container {
+          gap: 1.5vw;
+        }
+        .title-the {
+          font-size: 6vw;
+          margin-top: 2vw;
+        }
+        .title-side {
+          font-size: 8vw;
+        }
+        .title-hustles {
+          font-size: 8vw;
+          margin-top: 4vw;
+        }
+        .content-item img {
+          width: 10vw;
+        }
+        .item-business img {
+          width: 10vw;
+        }
+        .item-people img {
+          width: 10vw;
+        }
+        .content-item p,
+        .footer-text {
+          font-size: 2.5vw;
+        }
+        .nav-btn {
+          font-size: 2.5vw;
+          padding: 1vw 2vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu" aria-label="Main navigation">
+      <a class="nav-btn" href="index.html">back</a>
+    </nav>
+
+    <!-- Curved Title -->
+    <div class="title-container">
+      <svg viewBox="0 0 420 165" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="titleArc" d="M 5,28 Q 160,24 405,150" />
+        </defs>
+
+        <!-- Layer 1 -->
+        <text
+          font-family="Montserrat, sans-serif"
+          fill="rgba(0, 0, 0, 0.15)"
+          transform="translate(6, 6)"
+        >
+          <textPath href="#titleArc">
+            <tspan font-size="30" font-weight="400">the</tspan>
+            <tspan font-size="50" font-weight="700" font-style="italic">
+              side hustles
+            </tspan>
+          </textPath>
+        </text>
+
+        <!-- Layer 2 -->
+        <text
+          font-family="Montserrat, sans-serif"
+          fill="#ffffff"
+          transform="translate(3, 4)"
+        >
+          <textPath href="#titleArc">
+            <tspan font-size="30" font-weight="400">the</tspan>
+            <tspan font-size="50" font-weight="700" font-style="italic">
+              side hustles
+            </tspan>
+          </textPath>
+        </text>
+
+        <!-- Layer 3-->
+        <text font-family="Montserrat, sans-serif" fill="#000000">
+          <textPath href="#titleArc">
+            <tspan font-size="30" font-weight="400">the</tspan>
+            <tspan font-size="50" font-weight="700" font-style="italic">
+              side hustles
+            </tspan>
+          </textPath>
+        </text>
+      </svg>
+    </div>
+
+    <div class="content-item item-earth">
+      <img src="assets/globe.webp" alt="Globe graphic" />
+      <p>APPRECIATE THE EARTH<br />AND EVERYTHING<br />IN IT</p>
+    </div>
+
+    <div class="content-item item-business">
+      <img src="assets/wallet.webp" alt="Wallet, camera, and watch graphic" />
+      <p>HELPING BUSINESSES<br />SELL THEIR PRODUCTS</p>
+    </div>
+
+    <div class="content-item item-people">
+      <img src="assets/polaroid.webp" alt="Polaroid graphic" />
+      <p>HELPING PEOPLE<br />AROUND ME AND MYSELF<br />ENJOY LIFE</p>
+    </div>
+
+    <div class="footer-text">
+      <p>
+        TECHNICALLY NOT "SIDE HUSTLES" BUT THEY DO TAKE UP<br />SIDE-HUSTLE
+        AMOUNTS OF BRAIN SPACE.
+      </p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="js/transitions.js"></script>
+    <script src="js/side.js"></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  font-family: "Fredoka", "Comic Sans MS", cursive, sans-serif;
+  transition: opacity 0.4s ease;
+}
+
+.loader-container {
+  position: relative;
+  width: min(600px, calc(100vw - 48px));
+}
+
+.progress-wrapper {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  border: 3px solid #000;
+  background-color: #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #89e24a;
+  width: 0%;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.progress-text {
+  color: #000;
+  font-weight: 600;
+  font-size: 20px;
+  padding-left: 12px;
+  letter-spacing: 1px;
+}
+
+.dino-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 64px;
+  height: 64px;
+  margin-left: -32px;
+  z-index: 10;
+  transition: transform 0.4s ease-in-out;
+}
+
+.is-above {
+  transform: translateY(-66px);
+}
+
+.is-below {
+  transform: translateY(30px);
+}
+
+.dino-img {
+  width: 150%;
+  height: 150%;
+  object-fit: contain;
+  transform-origin: bottom center;
+  animation: walkBounce 0.4s ease-in-out infinite alternate;
+}
+
+.is-heartbeat .dino-img {
+  animation: heartbeat 1s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.heart-img {
+  position: absolute;
+  right: -32px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 64px;
+  height: 64px;
+  z-index: 5;
+}
+
+@keyframes walkBounce {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    transform: scale(1.25) translateY(-14px);
+  }
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.35);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.35);
+  }
+  60% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 520px) {
+  .progress-text {
+    font-size: 14px;
+    padding-left: 8px;
+  }
+
+  .dino-wrapper {
+    width: 44px;
+    height: 44px;
+    margin-left: -22px;
+  }
+
+  .is-above {
+    transform: translateY(-48px);
+  }
+
+  .is-below {
+    transform: translateY(22px);
+  }
+
+  .heart-img {
+    width: 44px;
+    height: 44px;
+    right: -22px;
+  }
+}

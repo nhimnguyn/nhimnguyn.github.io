@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Places</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
+
+    <link rel="stylesheet" href="css/map.css" />
+    <link rel="stylesheet" href="css/loading.css" />
+  </head>
+  <body>
+    <nav class="nav-menu" aria-label="Main navigation">
+      <a class="nav-btn" href="index.html">back</a>
+    </nav>
+
+    <div id="map" aria-label="World map showing visited places"></div>
+
+    <div class="map-vignette" aria-hidden="true"></div>
+
+    <aside
+      class="info-panel"
+      id="info-panel"
+      aria-hidden="true"
+      aria-label="Place details"
+    >
+      <div class="panel-img-wrap" id="panel-img-wrap">
+        <img class="panel-img" id="panel-img" src="" alt="" />
+      </div>
+      <div class="panel-content" id="panel-body">
+        <div class="panel-top-row">
+          <div class="panel-place-label">
+            <span class="panel-place-dot" aria-hidden="true">·</span>
+            <span class="panel-place-name" id="panel-place"></span>
+          </div>
+          <button class="nav-btn panel-close-btn" id="panel-close">
+            close
+          </button>
+        </div>
+        <div class="panel-divider"></div>
+        <p class="panel-text" id="panel-text"></p>
+      </div>
+    </aside>
+
+    <div class="page-title" aria-hidden="true">
+      <span class="title-regular">the</span>
+      <span class="title-bold">wanderings</span>
+    </div>
+
+    <script src="js/loader.js"></script>
+    <script src="js/transitions.js"></script>
+    <script src="js/map.js"></script>
+  </body>
+</html>

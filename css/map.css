@@ -1,0 +1,367 @@
+@font-face {
+  font-family: "computer says no";
+  src:
+    url("../assets/csn.woff2") format("woff2"),
+    local("Courier New"),
+    monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f7f7f7;
+}
+
+/* Map */
+
+#map {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.map-vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 40% 50%,
+    transparent 52%,
+    rgba(247, 247, 247, 0.22) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/*   Nav  */
+
+.nav-menu {
+  position: fixed;
+  top: clamp(14px, 3.5vw, 28px);
+  left: clamp(14px, 4vw, 36px);
+  z-index: 30;
+}
+
+.nav-btn {
+  font-family: "computer says no", monospace;
+  font-size: clamp(0.5rem, 0.95vw, 0.9rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #000;
+  background: #f7f7f7;
+  border: 1.5px solid #000;
+  padding: 0.5em 1.1em;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 3px 3px 0 #000;
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.15s ease;
+  user-select: none;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  appearance: none;
+  line-height: 1;
+}
+
+.nav-btn::before {
+  content: "·";
+  margin-right: 0.4em;
+  font-size: 1.2em;
+  line-height: 0;
+  vertical-align: middle;
+  opacity: 0.5;
+}
+
+.nav-menu .nav-btn {
+  transform: rotate(-1.5deg);
+}
+
+.nav-btn:hover {
+  background: #bed5db;
+  box-shadow: 5px 5px 0 #000;
+  transform: rotate(0deg) translate(-2px, -2px) !important;
+}
+
+.nav-btn:active {
+  background: #a8c4cb;
+  box-shadow: 1px 1px 0 #000;
+  transform: rotate(0deg) translate(2px, 2px) !important;
+  transition-duration: 0.06s !important;
+}
+
+/*   Page title             */
+
+.page-title {
+  position: fixed;
+  bottom: 9%;
+  left: 5%;
+  z-index: 20;
+  pointer-events: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35em;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.6s ease 0.35s,
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s;
+}
+
+body.loaded .page-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title-regular {
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(1.4rem, 2.8vw, 2.4rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #000;
+  line-height: 1;
+}
+
+.title-bold {
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(1.8rem, 3.6vw, 3rem);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.05em;
+  transform: skewX(-5deg);
+  display: inline-block;
+  color: #000;
+  line-height: 1;
+}
+
+/*   Pin markers */
+
+.map-pin-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.map-pin-head {
+  width: 22px;
+  height: 22px;
+  background: #f7f7f7;
+  border: 1.5px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "computer says no", monospace;
+  font-size: 13px;
+  line-height: 1;
+  color: #000;
+  transform: rotate(-2deg);
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.15s ease;
+  user-select: none;
+}
+
+.map-pin-stem {
+  width: 1.5px;
+  height: 7px;
+  background: #000;
+}
+
+.map-pin-wrapper:hover .map-pin-head {
+  background: #bed5db;
+  box-shadow: 4px 4px 0 #000;
+  transform: rotate(0deg) translate(-2px, -2px);
+}
+
+.map-pin-wrapper.visited .map-pin-head {
+  background: #d4e8ec;
+}
+
+.map-pin-wrapper.active .map-pin-head {
+  background: #bed5db;
+  box-shadow: 4px 4px 0 #000;
+  transform: rotate(0deg) translate(-2px, -2px) scale(1.12);
+}
+
+
+.info-panel {
+  position: fixed;
+  bottom: 7%;
+  left: 50%;
+  width: min(360px, calc(100vw - 40px));
+  background: #f7f7f7;
+  border: 1.5px solid #000;
+  box-shadow: 5px 5px 0 #000;
+  overflow: hidden;
+  z-index: 25;
+  opacity: 0;
+  pointer-events: none;
+  /* Enter from slightly below, slightly small, slightly tilted */
+  transform: translateX(-50%) translateY(22px) scale(0.9) rotate(-2.5deg);
+  transition:
+    opacity 0.35s ease,
+    transform 0.48s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+body.panel-open .info-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1) rotate(-0.8deg);
+}
+
+.panel-img-wrap {
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.panel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.panel-content {
+  padding: 12px 14px 14px;
+  background-color: #f7f7f7;
+  background-image:
+    linear-gradient(#bed5dbab 1px, transparent 1px),
+    linear-gradient(90deg, #bed5dbae 1px, transparent 1px);
+  background-size: 3vw 3vw;
+  transition: opacity 0.14s ease, transform 0.14s ease;
+}
+
+.panel-content.swapping {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.panel-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8em;
+  margin-bottom: 9px;
+}
+
+.panel-place-label {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  min-width: 0;
+}
+
+.panel-place-dot {
+  font-family: "computer says no", monospace;
+  font-size: 1.3em;
+  line-height: 0;
+  vertical-align: middle;
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+.panel-place-name {
+  font-family: "computer says no", monospace;
+  font-size: clamp(0.68rem, 1.05vw, 0.84rem);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panel-close-btn {
+  flex-shrink: 0;
+  font-size: clamp(0.44rem, 0.7vw, 0.6rem) !important;
+  padding: 0.28em 0.65em !important;
+  transform: rotate(1.4deg) !important;
+}
+
+.panel-close-btn:hover {
+  transform: rotate(0deg) translate(-2px, -2px) !important;
+}
+
+.panel-close-btn:active {
+  transform: rotate(0deg) translate(2px, 2px) !important;
+}
+
+.panel-divider {
+  width: 100%;
+  height: 1.5px;
+  background: #000;
+  margin-bottom: 10px;
+}
+
+.panel-text {
+  font-family: "computer says no", monospace;
+  font-size: clamp(0.52rem, 0.82vw, 0.72rem);
+  letter-spacing: 0.08em;
+  line-height: 1.85;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+
+/*   Mapbox overrides    */
+
+.mapboxgl-ctrl-bottom-left {
+  display: none;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  margin: 0 6px 6px 0;
+}
+
+.mapboxgl-ctrl-attrib {
+  font-size: 9px !important;
+  background: rgba(247, 247, 247, 0.82) !important;
+  border-radius: 0 !important;
+}
+
+.mapboxgl-ctrl-attrib a {
+  color: #555 !important;
+}
+
+/*   Mobile */
+
+@media (max-width: 600px) {
+  .info-panel {
+    width: calc(100vw - 32px);
+    bottom: 4%;
+  }
+
+  .panel-img-wrap {
+    height: 150px;
+  }
+
+  .panel-content {
+    background-size: 7vw 7vw;
+  }
+
+  .panel-text {
+    font-size: clamp(0.58rem, 2.6vw, 0.75rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    display: none;
+  }
+}

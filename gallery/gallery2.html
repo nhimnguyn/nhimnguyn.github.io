@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Field Notes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Roboto:ital,wght@0,300;0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/gallery.css" />
+    <link rel="stylesheet" href="../css/loading.css" />
+  </head>
+  <body>
+    <nav class="nav-menu" aria-label="Main navigation">
+      <a class="nav-btn dot" href="../index.html">back</a>
+    </nav>
+
+    <header class="page-header">
+      <span class="header-regular">field</span>
+      <span class="header-bold">notes</span>
+    </header>
+
+    <div class="grid" id="gallery-grid"></div>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+      <div class="lightbox__backdrop" id="lb-backdrop"></div>
+
+      <div class="lightbox__close-container">
+        <button class="nav-btn" id="lb-close">close</button>
+      </div>
+
+      <div class="lightbox__stage">
+        <div class="lightbox__img-wrap" id="lb-img-wrap">
+          <img class="lightbox__img" id="lb-img" src="" alt="" />
+        </div>
+      </div>
+
+      <div class="lightbox__controls">
+        <button class="nav-btn" id="lb-prev">prev</button>
+        <div class="lb-counter" id="lb-counter">01 / 26</div>
+        <button class="nav-btn" id="lb-next">next</button>
+      </div>
+    </div>
+
+    <script src="../js/loader.js"></script>
+    <script src="js/gallery.js"></script>
+  </body>
+</html>
