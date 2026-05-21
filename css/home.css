@@ -337,3 +337,116 @@ body.loaded #food2 {
   opacity: 1;
   transition-delay: 0.3s;
 }
+
+/* Mobile */
+@media (max-width: 768px) {
+  body,
+  html {
+    background-size: 6vw 6vw;
+  }
+
+  .nav-menu {
+    top: 4%;
+    left: 4%;
+    gap: 8px;
+  }
+
+  .nav-btn {
+    font-size: clamp(11px, 3.5vw, 15px);
+    letter-spacing: 0.06em;
+    padding: 8px 14px;
+    box-shadow: 2px 2px 0 #000;
+  }
+
+  .nav-btn::before {
+    margin-right: 0.35em;
+    font-size: clamp(13px, 4.2vw, 17px);
+  }
+
+  .nav-btn:hover {
+    box-shadow: 4px 4px 0 #000;
+    transform: rotate(0deg) translate(-1px, -1px) !important;
+  }
+
+  .text-bottom-left {
+    font-size: clamp(8px, 2.8vw, 11px);
+    max-width: 52vw;
+    bottom: 8%;
+    left: 4%;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+  }
+
+  .text-bottom-right {
+    bottom: 6%;
+    right: 4%;
+  }
+
+  .welcome-text {
+    font-size: clamp(1.2rem, 6vw, 2rem);
+    letter-spacing: -0.02em;
+    gap: 0.3em;
+  }
+
+  .nerverse-text {
+    font-size: clamp(1.5rem, 7.5vw, 2.5rem);
+    letter-spacing: -0.1em;
+    margin-top: -0.35em;
+  }
+
+  /* Move sticky note away from top-right asset cluster */
+  .sticky-note {
+    top: auto;
+    bottom: 22%;
+    right: 4%;
+    width: clamp(120px, 36vw, 155px);
+  }
+
+  .sticky-label {
+    font-size: clamp(0.44rem, 2.2vw, 0.6rem);
+  }
+
+  .sticky-text {
+    font-size: clamp(0.58rem, 2.8vw, 0.78rem);
+  }
+
+  .main-photo {
+    width: 30vw;
+  }
+
+  #dogs {
+    left: 63%;
+    top: 16%;
+    width: 18vw;
+  }
+  #rock {
+    left: 84%;
+    top: 11%;
+    width: 14vw;
+  }
+  #shells {
+    left: 77%;
+    top: 28%;
+    width: 22vw;
+  }
+  #apple {
+    left: 73%;
+    top: 42%;
+    width: 11vw;
+  }
+  #fragile {
+    left: 84%;
+    top: 53%;
+    width: 14vw;
+  }
+  #food1 {
+    left: 67%;
+    top: 64%;
+    width: 18vw;
+  }
+  #food2 {
+    left: 30%;
+    top: 73%;
+    width: 18vw;
+  }
+}
